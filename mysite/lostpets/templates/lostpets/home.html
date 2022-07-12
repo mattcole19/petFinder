@@ -1,0 +1,14 @@
+{% extends 'lostpets/base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+    <H1>Home Page</H1>
+    <ul>
+        {% for post in posts %}
+            <li> <a href="{% url 'post_detail' post.id %}">Post {{ post.id }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
