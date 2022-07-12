@@ -5,17 +5,16 @@ from .models import Pet, Profile, Post
 
 
 # Register your models here.
-class PetInline(admin.StackedInline):
+# class PetInline(admin.StackedInline):
+#     model = Pet
+
+
+class PetAdmin(admin.ModelAdmin):
     model = Pet
 
 
-# class PetAdmin(admin.ModelAdmin):
-#     pass
-
-
 class PostAdmin(admin.ModelAdmin):
-    inlines = [PetInline]
-
+    model = Post
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -29,5 +28,5 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-# admin.site.register(Post, PostAdmin)
-# admin.site.register(Pet, PetAdmin)
+admin.site.register(Post, PostAdmin)
+admin.site.register(Pet, PetAdmin)

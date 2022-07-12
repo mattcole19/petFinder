@@ -13,19 +13,25 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
-
+# TODO: Add an image field
 class Pet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
     gender = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.owner}'s {self.species}, {self.name}"
+
 
 class Post(models.Model):
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    missing_pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     description = models.CharField(max_length=200)
     area_last_seen = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"Post {self.id}"
 
 # Something not working here, will leave it commented out for now
 # @receiver(post_save, sender=User)
